@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply min-h-screen antialiased;
+  }
+
+  ::selection {
+    background: rgba(239, 68, 68, 0.35);
+    color: #fff;
+  }
+}
+
+/* ── Spectrum bars ───────────────────────────────────────────────── */
+@keyframes pp-bar {
+  0%   { transform: scaleY(0.22); }
+  15%  { transform: scaleY(0.85); }
+  35%  { transform: scaleY(0.45); }
+  55%  { transform: scaleY(1); }
+  75%  { transform: scaleY(0.55); }
+  100% { transform: scaleY(0.3); }
+}
+
+/* ── History list item entrance ─────────────────────────────────── */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Fire: flame gradient flicker ───────────────────────────────── */
+@keyframes fire-flicker {
+  0%, 100% { opacity: 0.55; transform: scaleY(1)    scaleX(1); }
+  25%       { opacity: 0.80; transform: scaleY(1.07) scaleX(0.97); }
+  50%       { opacity: 0.45; transform: scaleY(0.93) scaleX(1.03); }
+  75%       { opacity: 0.75; transform: scaleY(1.04) scaleX(0.99); }
+}
+
+/* ── Fire: individual sparks rising ────────────────────────────── */
+@keyframes fire-spark {
+  0%   { transform: translateY(0)    scale(1);   opacity: 1; }
+  100% { transform: translateY(-56px) scale(0);   opacity: 0; }
+}
+
+/* ── Ice: snowflakes falling ────────────────────────────────────── */
+@keyframes snow-fall {
+  0%   { transform: translateY(-12px) rotate(0deg);   opacity: 0; }
+  8%   { opacity: 0.8; }
+  92%  { opacity: 0.8; }
+  100% { transform: translateY(90px)  rotate(240deg); opacity: 0; }
+}
+
+/* ── Ice: shimmer glow inside button ───────────────────────────── */
+@keyframes ice-shimmer {
+  0%, 100% { opacity: 0.30; }
+  50%       { opacity: 0.65; }
+}
+
+/* ── Room energy: burning card glow ─────────────────────────────── */
+@keyframes burn-pulse {
+  0%, 100% { box-shadow: 0 0 20px -6px rgba(239,68,68,0.40), inset 0 0 24px -12px rgba(239,68,68,0.18); }
+  50%       { box-shadow: 0 0 44px -4px rgba(239,68,68,0.70), inset 0 0 36px  -8px rgba(239,68,68,0.32); }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  .pp-bar {
+    animation: pp-bar 650ms ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+
+  .glass {
+    background: rgba(8, 8, 8, 0.62);
+    backdrop-filter: blur(20px) saturate(130%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .slide-in {
+    animation: slide-in 280ms ease forwards;
+  }
+
+  /* Active fire button overlay — flickering gradient */
+  .fire-flicker {
+    animation: fire-flicker 550ms ease-in-out infinite;
+    transform-origin: bottom;
+  }
+
+  /* Individual spark rising */
+  .fire-spark {
+    animation: fire-spark linear infinite;
+  }
+
+  /* Active ice button overlay — shimmer */
+  .ice-shimmer {
+    animation: ice-shimmer 1.8s ease-in-out infinite;
+  }
+
+  /* Falling snowflake */
+  .snow-fall {
+    animation: snow-fall linear infinite;
+  }
+
+  /* Room energy card when > 80% */
+  .burn-card {
+    animation: burn-pulse 1.4s ease-in-out infinite;
+  }
+}
